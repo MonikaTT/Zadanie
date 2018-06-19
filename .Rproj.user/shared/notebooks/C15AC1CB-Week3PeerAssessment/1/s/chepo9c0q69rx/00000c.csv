@@ -1,0 +1,4 @@
+"0","g<-ggplot(data=df, aes(factor(type), km))+geom_boxplot(aes(fill=factor(type)))+theme(axis.text.x = element_text(angle = 90, hjust = 1), axis.title.x=element_blank())+theme(legend.position='none')+ylab(""Distance from the Main Square (in kms)"")"
+"0","plotly::ggplotly(g)"
+"2","Błąd w poleceniu 'f(..., self = self)':nieużywany argument (<environment>)
+"

@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "context(\"testowanie zmiennych na wejściu\")\n\ntest_that(\"testowanie formatu zmiennej n\",{\n        n <- \"a\"\n        expect_that(SettingWidth(n),\n                throws_error(\"Zmienna n powinna być typu numeric\"))\n})\n\ntest_that(\"testowanie wymiarów zmiennej n\",{\n        n <- as.data.frame(cbind(0, 1.233, 9))\n        expect_that(SettingWidth(n),\n                throws_error(\"Zmienna n powinna być typu numeric\"))\n})\n\ntest_that(\"testowanie wymiarów zmiennej n\",{\n        n <- c(0, 1.233, 9)\n        expect_that(SettingWidth(n),\n                throws_error(\"Zmienna n powinna być pojedyczną liczbą\"))\n})\n\ntest_that(\"testowanie wartości zmiennej n\",{\n        n <- 10\n        expect_that(SettingWidth(n),\n                throws_error(\"Zmienna n nie może być większa niż 8\"))\n})\n\ntest_that(\"wynik jest wartością numeryczną\",{\n        n <- 7\n        expect_that(SettingWidth(n), is_a(\"numeric\"))\n})\n\n\n",
+    "created" : 1529396901347.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2536823027",
+    "id" : "B4DCBCFB",
+    "lastKnownWriteTime" : 1529390217,
+    "last_content_update" : 1529390217,
+    "path" : "~/Documents/7N/Zadanie/tests/testthat/test-settingwidth.R",
+    "project_path" : "tests/testthat/test-settingwidth.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

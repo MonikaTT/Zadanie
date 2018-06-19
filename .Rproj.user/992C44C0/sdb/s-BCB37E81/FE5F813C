@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "context(\"testowanie zmiennych na wejściu\")\n\ntest_that(\"testowanie formatu zmiennej data\",{\n        df <- as.list(df)\n        expect_that(ShowHowMany(data = df, name.type = \"type\"),\n                throws_error(\"Argument data powinien być typu data.frame\"))\n})\n\ntest_that(\"testowanie formatu zmiennej name.type\",{\n        df <- df[, type:=as.factor(type)]\n        expect_that(ShowHowMany(data = df, name.type = \"type\"),\n                throws_error(\"Argument name.type powinien być typu character\"))\n})\n\ntest_that(\"testowanie liczby kategorii zmiennej name.type\",{\n        df <- df[, type:=sample(x = letters[1:12], size = nrow(df), replace = TRUE)]\n        expect_that(ShowHowMany(data = df, name.type = \"type\"),\n                throws_error(\"Zmienna name.type może mieć maksymanie 8 kategorii\"))\n})\n",
+    "created" : 1529396905454.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2134775402",
+    "id" : "FE5F813C",
+    "lastKnownWriteTime" : 1529391961,
+    "last_content_update" : 1529391961,
+    "path" : "~/Documents/7N/Zadanie/tests/testthat/test-showhowmany.R",
+    "project_path" : "tests/testthat/test-showhowmany.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

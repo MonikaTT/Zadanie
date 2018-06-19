@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#' Selekcja obiektów\n#'\n#' Pozwala na selekcjonowane obiektów ramki danych w oparciu o kryterium typu\n#' obiektu oraz odległości, która dzieli je od centrum Krakowa (tj. Rynku\n#' Głównego).\n#'\n#' @inheritParams CalculateDistance\n#' @param name.type Nazwa zmiennej w ramce danych \\code{data} zawierająca\n#' kategorie typu obiektu. Zmienna typu character.\n#' @param sel.type Wybrana kategoria typu obiektu (mieszcząca się w zmiennej\n#' \\code{name.type}), w oparciu o którą będzie filtrowana ramka danych\n#' \\code{data}.\n#' @param sel.dist Wartość numeryczna (numeric). Kryterium wyboru obiektów\n#' określające maksymalna odległość obiektu (w km) od centrum Krakowa. Domyślnie\n#' wynosi 60km.\n#' @return Obiekty typu data.frame.\n#' @import data.table\n#' @examples\n#' #Wybór z bazy obiektów turystycznych Krakowa wyłącznie muzeów i kościołów\n#' #położonych nie dalej niż 2km od Rynku Głównego\n#' \\dontrun{\n#' new.df<-SelectTypeDistance(data = df, latitude = \"lat\",\n#' longtitude = \"lng\", name.type = \"type\",\n#' sel.type = c(\"Churches\", \"Museums\"), sel.dist = 2)\n#' }\n#' @export\nSelectTypeDistance <- function(data = NULL, latitude = NULL,\n        longtitude = NULL, name.type = NULL, sel.type = NULL, sel.dist = 60){\n\n        if(!is.character(data[[name.type]]))\n                {stop(\"Argument name.type powinien być typu character\")}\n\n        data <- data.table::data.table(data)\n        #Wyznaczanie dystansu obiektu od centrum Krakowa\n        data <- data[, distance:=CalculateDistance(data = data,\n                longtitude = longtitude,\n                latitude = latitude)]\n        #Filtrowanie zmiennych\n        return(data[get(name.type) %in% sel.type & distance <= sel.dist])\n}\n\n",
+    "created" : 1529392906282.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2007262569",
+    "id" : "7C199E9F",
+    "lastKnownWriteTime" : 1529308467,
+    "last_content_update" : 1529308467,
+    "path" : "~/Documents/7N/Zadanie/R/SelectTypeDistance.R",
+    "project_path" : "R/SelectTypeDistance.R",
+    "properties" : {
+        "docOutlineVisible" : "1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "Package: Zadanie\nType: Package\nTitle: What the Package Does (Title Case)\nVersion: 0.1.0\nAuthor: Monika Traple\nMaintainer: Monika Traple <monika.traple@gmail.com>\nDescription: Zadanie do wykonania\nLicense: Brak\nEncoding: UTF-8\nLazyData: true\nRoxygenNote: 6.0.1\nSuggests: testthat\nImports: data.table, sp, leaflet, ggplot2\n",
+    "created" : 1529396960052.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4037307817",
+    "id" : "4E6653C5",
+    "lastKnownWriteTime" : 1529397021,
+    "last_content_update" : 1529397021601,
+    "path" : "~/Documents/7N/Zadanie/DESCRIPTION",
+    "project_path" : "DESCRIPTION",
+    "properties" : {
+    },
+    "relative_order" : 9,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "dcf"
+}

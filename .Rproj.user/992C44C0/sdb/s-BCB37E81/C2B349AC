@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "#' Wizualizacja liczby obiektów\n#'\n#' Funkcja generuje wykres słupkowy prezentacjący liczbę poszczególnych rodzajów\n#' obiektów znajdujących się w ramce danych\n#' @param data Obiekt typu data.frame zawierający przynajmniej jedną zmienną\n#' typu character, reprezentującą kategorie typu obiektu.\n#' @param name.type Nazwa zmiennej w ramce danych \\code{data} zawierająca\n#' kategorie typu obiektu. Zmienna typu character.\n#' @import ggplot2\n#' @import data.table\n#' @return Wartość typu numeric, do wykorzystania jako parametr width\n#' funkncji geom_bar.\n#' @examples\n#' \\dontrun{\n#' new.df <- SelectTypeDistance(data = df, latitude = \"lat\", longtitude = \"lng\",\n#' name.type = \"type\", sel.type = c(\"Streets and Squares\", \"Parks and Nature\"),\n#' sel.dist = 20)\n#' ShowHowMany(data = new.df, name.type = \"type\")}\n#' @export\nShowHowMany <- function(data = NULL, name.type = NULL) {\n\n        if(!is.data.frame(data))\n                {stop(\"Argument data powinien być typu data.frame\")}\n        if(!is.character(data[[name.type]]))\n                {stop(\"Argument name.type powinien być typu character\")}\n\n        #Przygotowanie tabeli danych na potrzeby wykresu\n        ile <- data.table::data.table(data[[name.type]])\n        data.table::setkey(ile, V1)\n        ile <- ile[, n:=.N, by=V1]\n        ile <- unique(ile)\n\n        #Weryfikacja liczby kategorii obiektów (nn), które zostana pokazane\n        #na wykresie. Posłuży także ustaleniu parametru width w funkcji geom_bar\n        nn <- nrow(ile)\n        if(nn > 8)\n                {stop(\"Zmienna name.type może mieć maksymanie 8 kategorii\")}\n\n        #Ustalanie porządku malejącego w tabeli na potrzeby wykresu\n        ile <- ile[, V1:=as.factor(V1)]\n        ile <- ile[, V1:= factor(V1, levels(V1)[order(n)])]\n\n        plot <- ggplot2::ggplot(data = ile, mapping = ggplot2::aes(x = V1, y = n)) +\n                ggplot2::geom_bar(stat = \"identity\", width = SettingWidth(nn),\n                        fill = \"steelblue\") +\n                ggplot2::labs(title=\"Liczba poszczególnych rodzajów obiektów w bazie\",\n                        size = 12) +\n                ggplot2::geom_text(ggplot2::aes(label = n), hjust = -0.5, size = 4)\n        plot <- plot + ggplot2:: theme (\n                        plot.title = ggplot2::element_text(face = \"bold\"),\n                        axis.title.x = ggplot2::element_blank(),\n                        axis.text.x = ggplot2::element_blank(),\n                        axis.ticks.x=ggplot2::element_blank(),\n                        axis.title.y =ggplot2::element_blank(),\n                        axis.text.y= ggplot2::element_text(size = 11))\n        plot <- plot + ggplot2::coord_flip()\n        plot\n}\n",
+    "created" : 1529313843716.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1712074055",
+    "id" : "C2B349AC",
+    "lastKnownWriteTime" : 1529396676,
+    "last_content_update" : 1529396676653,
+    "path" : "~/Documents/7N/Zadanie/R/ShowHowMany.R",
+    "project_path" : "R/ShowHowMany.R",
+    "properties" : {
+        "docOutlineVisible" : "0",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

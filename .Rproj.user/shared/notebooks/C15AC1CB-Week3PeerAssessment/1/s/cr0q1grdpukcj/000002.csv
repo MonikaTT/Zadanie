@@ -1,0 +1,6 @@
+"0","#Loading libraries and data"
+"0","library(plotly)"
+"0","require(knitr)"
+"0","require(markdownknit)"
+"0","library(sp)"
+"0","library(ggplot2)"

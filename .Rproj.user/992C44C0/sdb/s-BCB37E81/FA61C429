@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "context(\"testowanie zmiennych na wejściu\")\n\ntest_that(\"testowanie formatu zmiennej name.type\",{\n        data(data)\n        df$type <- as.factor(df$type)\n        expect_that(Map(data = df, longtitude = \"lng\", latitude = \"lat\",\n                name.type = \"type\"),\n                throws_error(\"Argument name.type powinien być typu character\"))\n})\n\ntest_that(\"testowanie liczby kategorii w zmiennej name.type\",{\n        data(data)\n        new.df <- df[, type := sample(x = letters[1:10], size = nrow(df),\n                replace = TRUE)]\n        expect_that(Map(data = new.df, longtitude = \"lng\", latitude = \"lat\",\n                name.type = \"type\"),\n                throws_error(\"Zmienna name.type może miec maksymanie 8 kategorii\"))\n})\n",
+    "created" : 1529396923843.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1157284350",
+    "id" : "FA61C429",
+    "lastKnownWriteTime" : 1529396934,
+    "last_content_update" : 1529396934660,
+    "path" : "~/Documents/7N/Zadanie/tests/testthat/test-map.R",
+    "project_path" : "tests/testthat/test-map.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

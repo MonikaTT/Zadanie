@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "context(\"testowanie zmiennych na wejściu\")\n\ntest_that(\"testowanie formatu zmiennej data\",{\n        x <- as.numeric(1:5)\n        y <- as.numeric(20:24)\n        xy <- c(39, 30, 90, 0, -12.999292)\n        expect_that(CalculateDistance(xy, \"x\", \"y\"),\n                throws_error(\"Argument data powinien być typu data.frame\"))\n})\n\ntest_that(\"testowanie formatu zmiennej lngtitude\",{\n        xy <- data.frame(c(\"k\", 33.4, \"a\"), c(-3, 6.99, 90))\n        names(xy) <- c(\"x\", \"y\")\n        expect_that(CalculateDistance(xy, \"x\", \"y\"),\n                throws_error(\"Zmienna longtitude powinna być wartością liczbową\"))\n})\n\ntest_that(\"testowanie zakresu zmiennej lngtitude\",{\n        xy <- data.frame(c(-10, 33.4, 200), c(-3, 6.99, 90))\n        names(xy) <- c(\"x\", \"y\")\n        expect_that(CalculateDistance(xy, \"x\", \"y\"),\n                throws_error(\"Wartość longtitude powinna mieścić się w przedziale od -90 do 90\"))\n})\n\ntest_that(\"testowanie zakresu zmiennej lngtitude\",{\n        xy <- data.frame(c(-20, 33.4, 95, 1.9499), c(-3, 6.99, 180, -45.99997))\n        names(xy) <- c(\"x\", \"y\")\n        expect_that(CalculateDistance(xy, \"x\", \"y\"),\n                throws_error(\"Wartość longtitude powinna mieścić się w przedziale od -90 do 90\"))\n})\n\ntest_that(\"testowanie formatu zmiennej latitude\",{\n        xy <- data.frame(c(89, 33.4, 1), c(\"rty\", 6.99, 90))\n        names(xy) <- c(\"x\", \"y\")\n        expect_that(CalculateDistance(xy, \"x\", \"y\"),\n                throws_error(\"Zmienna latitude powinna być wartością liczbową\"))\n})\n\ntest_that(\"testowanie zakresu zmiennej latitude\",{\n        xy <- data.frame(c(-90, 33.4, 18.97838292), c(-180.99827, 6.99, 90))\n        names(xy) <- c(\"x\", \"y\")\n        expect_that(CalculateDistance(xy, \"x\", \"y\"),\n                throws_error(\"Wartość latitude powinna mieścić się w przedziale od -180 do 180\"))\n})\n\ntest_that(\"testowanie zakresu zmiennej latitude\",{\n        xy <- data.frame(c(-20, 33.4, 90), c(-3, 6.99, 1000))\n        names(xy) <- c(\"x\", \"y\")\n        expect_that(CalculateDistance(xy, \"x\", \"y\"),\n                throws_error(\"Wartość latitude powinna mieścić się w przedziale od -180 do 180\"))\n})\n\ncontext(\"testowanie rezultatów na wyjściu\")\n\ntest_that(\"wynik jest wartością numeryczną\",{\n        xy <- data.frame(c(90, 28.9292992, -18.34, 0), c(178.993, 95, 0, -114.92928290023))\n        names(xy) <- c(\"x\", \"y\")\n        expect_that(CalculateDistance(xy, \"x\", \"y\"), is_a(\"numeric\"))\n})\n",
+    "created" : 1529396912060.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "314216530",
+    "id" : "C792B175",
+    "lastKnownWriteTime" : 1529233364,
+    "last_content_update" : 1529233364,
+    "path" : "~/Documents/7N/Zadanie/tests/testthat/test-calculatedistance.R",
+    "project_path" : "tests/testthat/test-calculatedistance.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

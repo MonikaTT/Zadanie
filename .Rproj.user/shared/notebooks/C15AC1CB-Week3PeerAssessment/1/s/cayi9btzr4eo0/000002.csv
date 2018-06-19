@@ -1,0 +1,11 @@
+"0","df<-read.csv(""/Users/monikatraple/Documents/Coursera/DataScience/9_DevelopingDataProducts/PeerAssessments/Week2/Dane_mapy.csv"", header = FALSE, sep = "";"", as.is = TRUE)
+#Giving names to the data frame
+names(df)<-c(""name"", ""lat"", ""lng"", ""type"")
+df$lat[41]<-50.051818
+df<-df[-78, ]
+df[which(df$type==""Culture""), ""type""]<-""Other""
+df[which(df$type==""Culutre""), ""type""]<-""Other""
+df[which(df$type==""Old buildings""), ""type""]<-""Old Buildings""
+levels(df$type)[5]<-""Juish Culture""
+"
+"2","duplicated levels in factors are deprecated"

@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "#' Obliczanie dystansu obiektów geograficznych od centrum Krakowa\n#'\n#' Funkcja oblicza dystans (w km) od Centrum Krakowa (tj. Rynku Głównego)\n#'\n#' @param data Obiekt typu data.frame zawierający dane obiektów, w tym\n#' położenie geografincze (tj. szerokość geograficzną - zmienna\n#' \\code{latitude} i długość geograficzna - zmienna \\code{longtitude})\n#' @param latitude Wektor wartości typu numeric reprezentujących szerokość\n#' geograficzną wyrażoną w stopniach dziesiętnych, które wraz z\n#' korespondującymi z nimi rekordami zmiennej \\code{latitude} dają pełną\n#' infomrację o współrzędnych geograficznych. Może przyjmować wartości\n#' w zakresie od -90 do 90.\n#' @param longtitude Wektor wartości typu numeric, reprezentujących długość\n#' geograficzną wyrażoną w stopniach dziesiętnych, które wraz z\n#' korespondującymi z nimi rekordami zmiennej \\code{longtitude} dają pełną\n#' infomrację o współrzędnych geograficznych. Może przyjmować wartości w\n#' zakresie od -180 do 180.\n#' @return Wektor wartości typu numeric, reprezetujących dystans obiektów\n#' (w km) od centurm Krakowa (tj. Rynku Głównego).\n#' @examples\n#' \\dontrun{\n#' #Uzupełenianie bazy obiektów turystycznych Krakowa i okolic o informację\n#' #dot.ich odległości od Rynku Głównego\n#' new.df <- df[, distance:=CalculateDistance(df,\"lng\",\"lat\")]}\n#' @import data.table\n#' @import sp\n#' @export\nCalculateDistance <- function(data, longtitude, latitude) {\n\n        if(!is.data.frame(data))\n                {stop(\"Argument data powinien być typu data.frame\")}\n        data <- data.table::data.table(data)\n        if(!is.numeric(data[[longtitude]]))\n                {stop(\"Zmienna longtitude powinna być wartością liczbową\")}\n        if(nrow(data[get(longtitude)> 90]) > 0)\n                {stop(\"Wartość longtitude powinna mieścić się w przedziale od -90 do 90\")}\n        if(nrow(data[get(longtitude) < -90]) > 0)\n                {stop(\"Wartość longtitude powinna mieścić się w przedziale od -90 do 90\")}\n        if(!is.numeric(data[[latitude]]))\n                {stop(\"Zmienna latitude powinna być wartością liczbową\")}\n        if(nrow(data[get(latitude) > 180]) > 0)\n                {stop(\"Wartość latitude powinna mieścić się w przedziale od -180 do 180\")}\n        if(nrow(data[get(latitude) < -180]) > 0)\n                {stop(\"Wartość latitude powinna mieścić się w przedziale od -180 do 180\")}\n\n        lng_lat <- as.matrix(cbind(data[[longtitude]], data[[latitude]]))\n        return(sp::spDistsN1(pts = lng_lat, pt = c(19.93676, 50.0619),\n                longlat = TRUE))\n}\n\n\n",
+    "created" : 1529396392036.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1878879759",
+    "id" : "69E77C34",
+    "lastKnownWriteTime" : 1529391096,
+    "last_content_update" : 1529391096,
+    "path" : "~/Documents/7N/Zadanie/R/CalculateDistance.R",
+    "project_path" : "R/CalculateDistance.R",
+    "properties" : {
+        "docOutlineVisible" : "1",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
